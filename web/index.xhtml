@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Clinica</title>
+    </h:head>
+    <h:body>
+        <p/>
+        <h:form id="formLogin">
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Usuário: "/>
+                <p:inputText id="campoCodigo" size="14" value="#{indexController.admin.codigo}" 
+                             maxlength="15" required="true" requiredMessage="Código obrigatório" >
+                </p:inputText>                        
+                <h:outputLabel value="Senha: "/>
+                <p:password  feedback="false" size="20"  maxlength="21"
+                             value="#{indexController.admin.senha}"
+                             required="true" requiredMessage="Senha obrigatória" />  
+                <span/>
+                <p:commandButton value="OK" icon="ui-icon-check" ajax="false"
+                                 action="#{indexController.autenticar()}" styleClass="ui-state-hover"/> 
+            </h:panelGrid>
+            <br/>
+            <p:messages showIcon="false" closable="true" />  
+        </h:form>
+    </h:body>
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />
+    </h:body>
+</html>
+

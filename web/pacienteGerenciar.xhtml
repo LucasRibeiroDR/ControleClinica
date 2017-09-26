@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Paciente</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="formCadastro">
+            <p:outputLabel  value="Novo paciente"/> 
+            <p/>
+
+            <p:outputLabel value="Nome(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.nome}"
+                         maxlength="50" required="true" requiredMessage="Nome(paciente) Obrigatorio" />
+
+                        
+            <p:outputLabel value="Nome(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.nomeResponsavel}"
+                         maxlength="50" required="true" requiredMessage="Nome(responsavel) Obrigatório" />
+
+            
+            <p:outputLabel value="Convenio: "/>
+            <p:inputText value="#{pacienteControle.paciente.convenio}"
+                         maxlength="50" required="false" />
+
+            
+            <p:outputLabel value="CPF(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.cpf_Paciente}"
+                         maxlength="11" required="true" requiredMessage="CPF(paciente) Obrigatorio" />
+
+            
+            <p:outputLabel value="CPF(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.cpf_Responsavel}"
+                         maxlength="11" required="true" requiredMessage="CPF(responsavel) Obrigatorio" />
+
+            
+            <p:outputLabel value="RG(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.rg_Paciente}"
+                         maxlength="9" required="true" requiredMessage="RG(paciente)Obrigatório" />
+
+            
+            <p:outputLabel value="RG(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.rg_Responsavel}"
+                         maxlength="9" required="true" requiredMessage="RG(responsavel) Obrigatório" />
+
+            
+            <p:outputLabel value="E-mail(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.email_Paciente}"
+                         maxlength="50" required="false" />
+
+
+            <p:outputLabel value="E-mail(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.email_Responsavel}"
+                         maxlength="50" required="true" requiredMessage="E-mail(responsavel) Obrigatório" />
+
+
+            <p:outputLabel value="Endereco(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.endereco_Paciente}"
+                         maxlength="50" required="true" requiredMessage="Endereco(paciente) Obrigatório" />
+
+            
+            <p:outputLabel value="Endereco(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.endereco_Responsavel}"
+                         maxlength="50" required="true" requiredMessage="Endereco(responsavel) Obrigatório" />
+
+
+            <p:outputLabel value="Senha de acesso: "/>
+            <p:inputText value="#{pacienteControle.paciente.senhaDeAcesso}"
+                         maxlength="20" required="true" requiredMessage="Senha de acesso Obrigatório" />
+
+
+            <p:outputLabel value="Telefone(paciente): "/>
+            <p:inputText value="#{pacienteControle.paciente.telefone_Paciente}"
+                         maxlength="15" required="true" requiredMessage="Telefone(paciente) Obrigatório" />
+
+            
+            <p:outputLabel value="Telefone(responsavel): "/>
+            <p:inputText value="#{pacienteControle.paciente.telefone_Responsavel}"
+                         maxlength="15" required="true" requiredMessage="Telefone(responsavel) Obrigatório" />
+            <p:commandButton value="Salvar" 
+                             action="#{pacienteControle.salvarNovoPaciente}"
+                             update="formCadastro, :formTabela" />
+            
+            <p/>
+            <p:messages showIcon="false" closable="true" />
+        </h:form>
+        <p/>
+        <h:form id="formTabela">
+            <p:dataTable id="tabPaciente" emptyMessage="Nenhum paciente cadastrado"
+                         var="paciente" value="#{pacienteControle.pacientes}">
+                <p:column headerText="Código: ">
+                    <h:outputText value="#{paciente.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome (paciente): ">
+                    <h:outputText value="#{paciente.nome}"/>
+                </p:column>
+                <p:column headerText="Nome (responsável): ">
+                    <h:outputText value="#{paciente.nomeResponsavel}"/>
+                </p:column>
+                <p:column headerText="CPF (paciente): ">
+                    <h:outputText value="#{paciente.cpf_Paciente}"/>
+                </p:column>
+                <p:column headerText="CPF (responsável): ">
+                    <h:outputText value="#{paciente.cpf_Responsavel}"/>
+                </p:column>
+                <p:column headerText="RG (paciente): ">
+                    <h:outputText value="#{paciente.rg_Paciente}"/>
+                </p:column>
+                <p:column headerText="RG (responsável): ">
+                    <h:outputText value="#{paciente.rg_Responsavel}"/>
+                </p:column>
+                <p:column headerText="Endereço (paciente): ">
+                    <h:outputText value="#{paciente.endereco_Paciente}"/>
+                </p:column>
+                <p:column headerText="Endereço (responsável): ">
+                    <h:outputText value="#{paciente.endereco_Responsavel}"/>
+                </p:column>
+                <p:column headerText="Telefone (paciente): ">
+                    <h:outputText value="#{paciente.telefone_Paciente}"/>
+                </p:column>
+                <p:column headerText="Telefone (responsável): ">
+                    <h:outputText value="#{paciente.telefone_Responsavel}"/>
+                </p:column>
+                <p:column headerText="E-mail (paciente): ">
+                    <h:outputText value="#{paciente.email_Paciente}"/>
+                </p:column>
+                <p:column headerText="E-mail (responsável): ">
+                    <h:outputText value="#{paciente.email_Responsavel}"/>
+                </p:column>
+                <p:column headerText="Convenio: ">
+                    <h:outputText value="#{paciente.convenio}"/>
+                </p:column>
+                <p:column headerText="Senha de acesso: ">
+                    <h:outputText value="#{paciente.senhaDeAcesso}"/>
+                </p:column>
+                <p:column headerText="">
+                    <p:commandButton icon="ui-icon-trash" value="excluir"
+                                     actionListener="#{pacienteControle.excluir(paciente)}"
+                                     update=":formTabela">
+                        <p:confirm header="Excluir paciente"
+                                   message="Tem certeza que deseja excluir este paciente?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="">
+                    <p:commandButton value="editar" action="#{pacienteControle.preparaAlterar(paciente)}" 
+                                     onclick="PF('editarPacienteDialog').show()"
+                                     update=":formAltera"/>
+                </p:column>
+            </p:dataTable>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:outputPanel style="width: 100%; text-align:center" layout="block"> 
+                    <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:outputPanel>
+            </p:confirmDialog>
+            
+        </h:form>
+        
+        <p:dialog id="editarPacienteDialog" widgetVar="editarPacienteDialog" modal="true" header="Alteração de paciente">   
+            <h:form id="formAltera">  
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Código: "/>
+                    <p:inputText id="campoLogin" size="14" 
+                                 value="#{pacienteControle.aux.codigo}" 
+                                 disabled="true"/>                       
+                    <h:outputLabel value="Nome (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.nome}"
+                                 required="true" requiredMessage="Nome obrigatório" />
+                    <h:outputLabel value="Nome (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.nomeResponsavel}"
+                                 required="true" requiredMessage="Nome obrigatório" />
+                    <h:outputLabel value="RG (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.rg_Paciente}"
+                                 required="true" requiredMessage="RG obrigatório" />
+                    <h:outputLabel value="RG (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.rg_Responsavel}"
+                                 required="true" requiredMessage="RG obrigatório" />
+                    <h:outputLabel value="CPF (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.cpf_Paciente}"
+                                 required="true" requiredMessage="CPF obrigatório" />
+                    <h:outputLabel value="CPF (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.cpf_Responsavel}"
+                                 required="true" requiredMessage="CPF obrigatório" />
+                    <h:outputLabel value="E-mail (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.email_Paciente}"
+                                 required="true" requiredMessage="E-mail obrigatório" />
+                    <h:outputLabel value="E-mail (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.email_Responsavel}"
+                                 required="true" requiredMessage="E-mail obrigatório" />
+                    <h:outputLabel value="Endereço (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.endereco_Paciente}"
+                                 required="true" requiredMessage="Endereço obrigatório" />
+                    <h:outputLabel value="Endereço (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.endereco_Responsavel}"
+                                 required="true" requiredMessage="Endereço obrigatório" />
+                    <h:outputLabel value="Telefone (paciente): "/>
+                    <p:inputText value="#{pacienteControle.aux.telefone_Paciente}"
+                                 required="true" requiredMessage="Endereço obrigatório" />
+                    <h:outputLabel value="Telefone (responsavel): "/>
+                    <p:inputText value="#{pacienteControle.aux.telefone_Responsavel}"
+                                 required="true" requiredMessage="Endereço obrigatório" />
+                    <h:outputLabel value="Senha de Acesso: "/>
+                    <p:inputText value="#{pacienteControle.aux.senhaDeAcesso}"
+                                 required="true" requiredMessage="Senha obrigatória" />
+                    <h:outputLabel value="Convenio: "/>
+                    <p:inputText value="#{pacienteControle.aux.convenio}"
+                                 required="false" />
+                </h:panelGrid>
+                <p/>
+                <p:outputPanel style="width: 100%; text-align:center" >
+                    <p:commandButton value="Continuar" icon="ui-icon-check" style="width: 150px;" ajax="false"
+                                     action="#{pacienteControle.alterar()}" 
+                                     styleClass="ui-state-hover"/> 
+                </p:outputPanel>
+                <p:outputPanel style="width: 100%; text-align:center" >
+                    <p:messages id="msgPopup" showIcon="false" closable="true" />
+                </p:outputPanel>  
+            </h:form >
+        </p:dialog>
+    </h:body>
+</html>
