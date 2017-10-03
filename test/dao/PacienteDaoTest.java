@@ -39,7 +39,6 @@ public class PacienteDaoTest {
     }
 
     @Test
-
     
 public void testInserir() {
         /*PacienteDao dao = new PacienteDao();
@@ -67,5 +66,5 @@ public void testInserir() {
         PacienteDao dao = new PacienteDao();
         dao.inserir(paciente);
     
-}
+    }
 }

@@ -52,6 +52,5 @@ public class AgendamentoDaoTest {
         agendamento.setData("21/08/2017");
         AgendamentoDao dao = new AgendamentoDao();
         dao.inserir(agendamento);
-    }
-    
+    }   
 }

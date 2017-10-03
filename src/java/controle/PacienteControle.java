@@ -45,7 +45,6 @@ public class PacienteControle implements Serializable {
         pacientes.remove(c);
     }
     
-
     public Paciente getPaciente() {
         return paciente;
     }

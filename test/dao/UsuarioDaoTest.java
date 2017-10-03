@@ -64,6 +64,4 @@ public class UsuarioDaoTest {
     /**
      * Test of excluir method, of class UsuarioDao.
      */
-   
-    
 }

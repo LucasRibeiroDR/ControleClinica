@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Agendamento</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="formCadastro">
+            <p:outputLabel  value="Novo agendamento"/> 
+            <p/>
+
+            <p:outputLabel value="Nome(paciente): "/>
+            <p:inputText value="#{agendamentoControle.agendamento.nome}"
+                         maxlength="50" required="true" requiredMessage="Nome(paciente) Obrigatorio" />
+
+                        
+            <p:outputLabel value="Código do paciente: "/>
+            <p:inputText value="#{agendamentoControle.agendamento.codigoPaciente}"
+                         maxlength="50" required="true" requiredMessage="Nome(responsavel) Obrigatório" />
+            
+            <p:outputLabel value="Procedimento: "/>
+            <p:inputText value="#{agendamentoControle.agendamento.procedimento}"
+                         maxlength="50" required="true" requiredMessage="Procedimento Obrigatório" />
+
+            
+            <p:outputLabel value="Data do agendamento: "/>
+            <p:inputText value="#{agendamentoControle.agendamento.data}"
+                         maxlength="10" required="true" requiredMessage="Data do agendamento Obrigatoria" />
+
+            <p:outputLabel value="Horario: "/>
+            <p:inputText value="#{agendamentoControle.agendamento.horario}"
+                         maxlength="5" required="true" requiredMessage="Horario Obrigatório" />
+
+            <p:commandButton value="Salvar" 
+                             action="#{agendamentoControle.salvarNovoAgendamento()}"
+                             update="formCadastro, :formTabela" />
+            
+            <p/>
+            <p:messages showIcon="false" closable="true" />
+        </h:form>
+        <p/>
+        <h:form id="formTabela">
+            <p:dataTable id="tabAgendamento" emptyMessage="Nenhum agendamento cadastrado"
+                         var="agendamento" value="#{agendamentoControle.agendamentos}">
+                <p:column headerText="Código: ">
+                    <h:outputText value="#{agendamento.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome (paciente): ">
+                    <h:outputText value="#{agendamento.nome}"/>
+                </p:column>
+                <p:column headerText="Código do paciente: ">
+                    <h:outputText value="#{agendamento.codigoPaciente}"/>
+                </p:column>
+                <p:column headerText="Procedimento: ">
+                    <h:outputText value="#{agendamento.procedimento}"/>
+                </p:column>
+                <p:column headerText="Data do agendamento: ">
+                    <h:outputText value="#{agendamento.data}"/>
+                </p:column>
+                <p:column headerText="Horario: ">
+                    <h:outputText value="#{agendamento.horario}"/>
+                </p:column>
+                
+                <p:column headerText="">
+                    <p:commandButton icon="ui-icon-trash" value="excluir"
+                                     actionListener="#{agendamentoControle.excluir(agendamento)}"
+                                     update=":formTabela">
+                        <p:confirm header="Excluir Agendamento"
+                                   message="Tem certeza que deseja excluir este agendamento?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="">
+                    <p:commandButton value="editar" action="#{agendamentoControle.preparaAlterar(agendamento)}" 
+                                     onclick="PF('editarAgendamentoDialog').show()"
+                                     update=":formAltera"/>
+                </p:column>
+            </p:dataTable>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:outputPanel style="width: 100%; text-align:center" layout="block"> 
+                    <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:outputPanel>
+            </p:confirmDialog>
+            
+        </h:form>
+        
+        <p:dialog id="editarAgendamentoDialog" widgetVar="editarAgendamentoDialog" modal="true" header="Alteração de agendamento">   
+            <h:form id="formAltera">  
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Código: "/>
+                    <p:inputText id="codigo" size="14" 
+                                 value="#{agendamentoControle.aux.codigo}" 
+                                 disabled="true"/>                       
+                    <h:outputLabel value="Nome (paciente): "/>
+                    <p:inputText value="#{agendamentoControle.aux.nome}"
+                                 required="true" requiredMessage="Nome obrigatório" />
+                    <h:outputLabel value="Codigo do Paciente: "/>
+                    <p:inputText value="#{agendamentoControle.aux.codigoPaciente}"
+                                 required="true" requiredMessage="Codigo do Paciente obrigatorio" />
+                    <h:outputLabel value="Procedimento: "/>
+                    <p:inputText value="#{agendamentoControle.aux.procedimento}"
+                                 required="true" requiredMessage="Procedimento obrigatorio" />
+                    <h:outputLabel value="Data:"/>
+                    <p:inputText value="#{agendamentoControle.aux.data}"
+                                 required="true" requiredMessage="Data Obrigatorio" />
+                    <h:outputLabel value="Horario: "/>
+                    <p:inputText value="#{agendamentoControle.aux.horario}"
+                                 required="true" requiredMessage="Horario obrigatório" />
+                </h:panelGrid>
+                <p/>
+                <p:outputPanel style="width: 100%; text-align:center" >
+                    <p:commandButton value="Continuar" icon="ui-icon-check" style="width: 150px;" ajax="false"
+                                     action="#{agendamentoControle.alterar()}" 
+                                     styleClass="ui-state-hover"/> 
+                </p:outputPanel>
+                <p:outputPanel style="width: 100%; text-align:center" >
+                    <p:messages id="msgPopup" showIcon="false" closable="true" />
+                </p:outputPanel>  
+            </h:form >
+        </p:dialog>
+    </h:body>
+</html>

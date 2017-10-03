@@ -60,6 +60,4 @@ public class AgendamentoDao implements Serializable {
         manager.close();
         return lista;
     }
-        
-    
 }

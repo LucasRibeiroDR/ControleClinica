@@ -7,7 +7,6 @@ import javax.persistence.TypedQuery;
 import modelo.Administrador;
 import util.JpaUtil;
 
-
 public class AdministradorDao implements Serializable {
     EntityManager manager;
     
@@ -36,6 +35,5 @@ public class AdministradorDao implements Serializable {
         tx.commit();
         manager.close();
         return true;
-    }
-    
+    } 
 }
